@@ -41,7 +41,7 @@ function NavBar() {
                   <li>
                     <NavLink
                       to={""}
-                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm "
+                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm hover:text-main"
                       aria-current="page"
                     >
                       Home
@@ -51,7 +51,7 @@ function NavBar() {
                   <li>
                     <NavLink
                       to={"products"}
-                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm "
+                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm hover:text-main"
                       aria-current="page"
                     >
                       Products
@@ -60,7 +60,7 @@ function NavBar() {
                   <li>
                     <NavLink
                       to={"categories"}
-                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm "
+                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm hover:text-main"
                       aria-current="page"
                     >
                       Categories
@@ -69,7 +69,7 @@ function NavBar() {
                   <li>
                     <NavLink
                       to={"brands"}
-                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm "
+                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm hover:text-main"
                       aria-current="page"
                     >
                       Brands
@@ -81,7 +81,7 @@ function NavBar() {
               <li>
                     <NavLink
                       to={"cart"}
-                      className="block py-2 px-3 relative text-neutral-700  md:p-0 text-sm "
+                      className="block py-2 px-3 relative text-neutral-700  md:p-0 text-sm hover:text-main"
                       aria-current="page"
                     >
                      <IoCartOutline    size={24} />

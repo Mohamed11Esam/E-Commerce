@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import styles from "./Cart.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import { useEffect } from "react";
@@ -9,9 +9,11 @@ import Loader from "../../Components/Loader/Loader";
 import { FaTrashCan } from "react-icons/fa6";
 
 function Cart() {
+  const navigate = useNavigate();
   const { getLoggedCartData ,removeCartItem,updateProductCount,setCartId,setNumOfCartItem,deleteItems} = useContext(CartContext);
   const [cartData, setCartData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [paymentMethod, setPaymentMethod] = useState("cash")
   async function getData() {
     setLoading(false);
     let data = await getLoggedCartData();
@@ -185,14 +187,18 @@ function Cart() {
                       </dd>
                     </dl>
                   </div>
-                  <button className="btn w-full">Proceed to Checkout</button>
+                  <select onChange={(e)=>{setPaymentMethod(e.target.value)}} name="payment" id="payment"className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+                    <option value="cash">Cash</option>
+                    <option value="online">Online</option>
+                  </select> 
+                  <button onClick={()=>{navigate('/checkout',{state:paymentMethod})}} className="btn w-full">Proceed to Checkout</button>
                   <div className="flex items-center justify-center gap-2">
                     <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                       {" "}
                       or{" "}
                     </span>
                     <Link
-                      to={"/"}
+                    to='/'
                       className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500"
                     >
                       Continue Shopping
