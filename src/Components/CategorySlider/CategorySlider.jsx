@@ -65,7 +65,6 @@ export default function CategorySlider() {
     <Slider className="m-3" {...settings}>
       {categories.map((category) => (
         <div key={category._id}>
-          {console.log(category)}
           <img src={category.image} className="w-full h-[400px]" alt={category.name} />
           <h4 className="font-semibold m-3">{category.name}</h4>
         </div>

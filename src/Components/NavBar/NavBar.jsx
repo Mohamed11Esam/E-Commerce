@@ -13,8 +13,10 @@ import {
 import { IoCartOutline } from "react-icons/io5";
 import { useContext } from "react";
 import { tokenContext } from "../../Context/TokenContext";
+import { CartContext } from './../../Context/CartContext';
 function NavBar() {
   const { token, setToken } = useContext(tokenContext);
+  const { numOfCartItem } = useContext(CartContext);
   const navigate = useNavigate();
   function logoutUser() {
     localStorage.removeItem("token");
@@ -83,7 +85,7 @@ function NavBar() {
                       aria-current="page"
                     >
                      <IoCartOutline    size={24} />
-                     <span className="absolute w-4 h-4 rounded-full text-black flex justify-center items-center bg-main font-semibold -right-2 -top-2">2</span>
+                     <span className="absolute w-4 h-4 rounded-full text-black flex justify-center items-center bg-main font-semibold -right-2 -top-2">{numOfCartItem}</span>
                     </NavLink>
                   </li>
                 <li>

@@ -9,16 +9,28 @@ import Loader from "../../Components/Loader/Loader";
 import { FaTrashCan } from "react-icons/fa6";
 
 function Cart() {
-  const { getLoggedCartData ,removeCartItem,updateProductCount} = useContext(CartContext);
+  const { getLoggedCartData ,removeCartItem,updateProductCount,setCartId,setNumOfCartItem,deleteItems} = useContext(CartContext);
   const [cartData, setCartData] = useState(null);
+  const [loading, setLoading] = useState(true);
   async function getData() {
+    setLoading(false);
     let data = await getLoggedCartData();
     setCartData(data.data);
+    setLoading(true);
   }
   
   async function deleteItem(productId) {
     let res = await removeCartItem(productId);
+    setCartId(res.data.cartId);
+    setNumOfCartItem(res.data.numOfCartItems);
     setCartData(res.data.data);
+  }
+  async function clearForm() {
+    setLoading(false);
+    let res = await deleteItems();
+    setCartData(res.data);
+    setNumOfCartItem(0);
+    setLoading(true);
   }
   async function updateProduct(productId ,count) {
     let res = await updateProductCount(productId,count);
@@ -34,24 +46,27 @@ function Cart() {
       <Helmet>
         <title>Cart</title>
       </Helmet>
-      {cartData ? (
-        <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+      {loading ? <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
           <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <div className="flex flex-wrap justify-between items-center">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">
               Shopping Cart
             </h2>
+
+            <button type="button" onClick={()=>{clearForm()}} className="text-white bg-green-600 border border-gray-300 focus:outline-none hover:bg-main focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  ">Clear</button>
+            </div>
             <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
               <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                 <div className="space-y-6">
-                  {cartData.products?.length > 0 ? cartData.products.map((product) => (
+                  {cartData?.products?.length > 0 ? cartData?.products?.map((product) => (
                         <div
-                          key={product.product._id}
+                          key={product?.product._id}
                           className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6"
                         >
                           <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                             <img
                               className="h-60 w-60 dark:hidden"
-                              src={product.product.imageCover}
+                              src={product?.product.imageCover}
                               alt="imac image"
                             />
 
@@ -61,8 +76,8 @@ function Cart() {
                             <div className="flex items-center justify-between md:order-3 md:justify-end">
                               <div className="flex items-center">
                                 <button
-                                disabled={product.count === 1}
-                                 onClick={()=>{updateProduct(product.product.id,product.count-1)}}
+                                disabled={product?.count === 1}
+                                 onClick={()=>{updateProduct(product?.product.id,product?.count-1)}}
                                   type="button"
                                   className="disabled:cursor-not-allowed inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
                                 >
@@ -82,9 +97,9 @@ function Cart() {
                                     />
                                   </svg>
                                 </button>
-                                <p className="mx-2">{product.count}</p>
+                                <p className="mx-2">{product?.count}</p>
                                 <button
-                                  onClick={()=>{updateProduct(product.product.id,product.count+1)}}
+                                  onClick={()=>{updateProduct(product?.product.id,product?.count+1)}}
                                   type="button"
                                   className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
                                 >
@@ -107,7 +122,7 @@ function Cart() {
                               </div>
                               <div className="text-end md:order-4 md:w-32">
                                 <p className="text-base font-bold text-gray-900 dark:text-white">
-                                  {product.price * product.count}EGP
+                                  {product?.price * product?.count}EGP
                                 </p>
                               </div>
                             </div>
@@ -116,14 +131,14 @@ function Cart() {
                                 href="#"
                                 className="text-base font-medium text-gray-900 hover:underline dark:text-white"
                               >
-                                {product.product.title}
+                                {product?.product.title}
                               </a>
                               <div className="flex items-center gap-4">
 
                                 <button
                                   type="button"
                                   className="inline-flex items-center text-2xl font-medium text-red-600 hover:underline dark:text-red-500"
-                                  onClick={()=>{deleteItem(product.product._id)}}
+                                  onClick={()=>{deleteItem(product?.product._id)}}
                                 >
                                   <FaTrashCan />
 
@@ -148,7 +163,7 @@ function Cart() {
                           Original price
                         </dt>
                         <dd className="text-base font-medium text-gray-900 dark:text-white">
-                          {cartData.totalCartPrice ? cartData.totalCartPrice : "0"}
+                          {cartData?.totalCartPrice ? cartData?.totalCartPrice : "0"}
                         </dd>
                       </dl>
 
@@ -166,7 +181,7 @@ function Cart() {
                         Total
                       </dt>
                       <dd className="text-base font-bold text-gray-900 dark:text-white">
-                        {cartData.totalCartPrice ? cartData.totalCartPrice : "0"}
+                        {cartData?.totalCartPrice ? cartData?.totalCartPrice : "0"}
                       </dd>
                     </dl>
                   </div>
@@ -202,10 +217,9 @@ function Cart() {
               </div>
             </div>
           </div>
-        </section>
-      ) : (
-        <Loader />
-      )}
+        </section> :<Loader/>}
+
+
     </div>
   );
 }

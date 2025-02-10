@@ -20,11 +20,13 @@ const settings = {
 function ProductDetals() {
   const [details, setDetails] = useState({});
   const { id } = useParams();
-  const {addToCart} = useContext(CartContext);
+  const {addToCart,setCartId,setNumOfCartItem} = useContext(CartContext);
   async function addProduct(productId){
     let res = await addToCart(productId);
-    console.log(res)
+    
     if (res.status === 200) {
+      setCartId(res.data.cartId);
+    setNumOfCartItem(res.data.numOfCartItems);
       toast.success(res.data.message,{
         position: 'bottom-right',});
     }

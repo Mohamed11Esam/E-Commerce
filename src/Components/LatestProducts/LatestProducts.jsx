@@ -24,11 +24,13 @@ function LatestProducts() {
     getProducts()
   }, []);
 
-  const {addToCart} = useContext(CartContext);
+  const {addToCart,setCartId,setNumOfCartItem} = useContext(CartContext);
   async function addProduct(productId){
     let res = await addToCart(productId);
-    console.log(res)
+   
     if (res.status === 200) {
+      setCartId(res.data.cartId);
+      setNumOfCartItem(res.data.numOfCartItems)
       toast.success(res.data.message,{
         position: 'bottom-right',});
     }
@@ -37,6 +39,7 @@ function LatestProducts() {
         position: 'bottom-right',});
     }
   }
+
   return <div className="row my-10 justify-center">
     {products.length > 0 ? products.map((product)=> (
         <div className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6" key={product.id}>
