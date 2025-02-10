@@ -63,7 +63,6 @@
     }
     .active{
         color: #0aad0a;
-        border-bottom: 1px black solid;
         transition: all 500ms;
         font-weight: bold;
     }

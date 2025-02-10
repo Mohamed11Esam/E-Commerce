@@ -16,7 +16,7 @@ const settings = {
 function MainSlider() {
   return (
     <div className="row my-10">
-      <div className="w-3/4">
+      <div className="w-full md:w-3/4">
         <Slider {...settings}>
           <div>
           <img src={img1} className="w-full h-[500px]" />
@@ -30,9 +30,9 @@ function MainSlider() {
         </Slider>
         
       </div>
-      <div className="w-1/4">
-
-      <Slider {...settings} >
+      <div className="w-full flex flex-wrap md:block md:w-1/4">
+  
+      <Slider className="w-1/2 md:w-full" {...settings} >
 
           <img src={img2} className="w-full h-[250px]" />
 
@@ -45,7 +45,7 @@ function MainSlider() {
         </Slider>
      
 
-        <Slider {...settings} >
+        <Slider className="w-1/2 md:w-full" {...settings} >
 
           <img src={img3} className="w-full h-[250px]" />
 
