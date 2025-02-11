@@ -6,6 +6,7 @@ import Loader from "./../../Components/Loader/Loader";
 import ProductItem from "./../../Components/ProductItem/ProductItem";
 import { CartContext } from "../../Context/CartContext";
 import toast from "react-hot-toast";
+import noProducts from '../../assets/images/WishList.27b4b70c133dbb5fa3624842ce62d778.svg'
 function Wishlist() {
   const {
     addToWishlist,
@@ -89,7 +90,7 @@ function Wishlist() {
             </div>
           ))
         ) : (
-          <h2 className="text-2xl font-semibold">No Product Found</h2>
+          <img src={noProducts} className="w-1/3" alt="" />
         )}
       </div>
       ):(

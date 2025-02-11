@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Loader from "../../Components/Loader/Loader";
 import { FaTrashCan } from "react-icons/fa6";
-
+import noProducts from '../../assets/images/Empty-cart.97fb3c19229a1ba90557c158abbeecab.svg'
 function Cart() {
   const navigate = useNavigate();
   const { getLoggedCartData ,removeCartItem,updateProductCount,setCartId,setNumOfCartItem,deleteItems} = useContext(CartContext);
@@ -151,7 +151,7 @@ function Cart() {
                           </div>
                         </div>
                       ))
-                    : "No Products Found"}
+                    : <img src={noProducts} className="w-1/3" alt="" />}
                 </div>
               </div>
               <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
