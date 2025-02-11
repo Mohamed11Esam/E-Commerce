@@ -76,6 +76,15 @@ function NavBar() {
                       Brands
                     </NavLink>
                   </li>
+                  <li>
+                    <NavLink
+                      to={"allorders"}
+                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm hover:text-main"
+                      aria-current="page"
+                    >
+                      Orders
+                    </NavLink>
+                  </li>
                 </ul>
               )}
               <ul className="font-medium  flex flex-col md-p-4 md:p-0 md:items-center  md:justify-end w-1/2  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0  ">

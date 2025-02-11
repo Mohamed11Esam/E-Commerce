@@ -42,7 +42,6 @@ function ProductDetals() {
       .get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
       .then((res) => {
         setDetails(res.data.data); 
-        console.log(res.data.data)
       })
       .catch((err) => {
         console.log(err);
@@ -70,7 +69,6 @@ function ProductDetals() {
   useEffect(() => {
     getWishlistdata();
   }, [])
-  
   return (
     <div className="row my-14 items-center overflow-hidden">
         <Helmet>

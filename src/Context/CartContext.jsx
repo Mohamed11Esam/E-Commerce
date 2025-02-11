@@ -55,6 +55,13 @@ export default function CartContextProvider({ children }) {
       .then((res) => res.data)
       .catch((err) => err);
   }
+  function getLoggedUserOrders(userId) {
+    return axios
+      .get(`https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`, {
+      })
+      .then((res) => res.data)
+      .catch((err) => err);
+  }
   function deleteItems() {
     return axios
       .delete("https://ecommerce.routemisr.com/api/v1/cart", {
@@ -96,7 +103,8 @@ export default function CartContextProvider({ children }) {
         setNumOfCartItem,
         deleteItems,
         cashOnDelivery,
-        onlinePayment
+        onlinePayment,
+        getLoggedUserOrders
       }}
     >
       {children}
