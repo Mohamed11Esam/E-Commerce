@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet";
 import { useContext } from "react";
 import { CartContext } from "../../Context/CartContext";
 import toast from "react-hot-toast";
+import { WishlistContext } from './../../Context/WishlistContext';
+import { FaHeart } from "react-icons/fa6";
 const settings = {
   dots: false,
   infinite: true,
@@ -49,7 +51,25 @@ function ProductDetals() {
   useEffect(() => {
     getProductDetails();
   }, []);
+  const {addToWishlist,setWishListData,removeWishlistItem,isInWishlist,wishListData,getLoggedWishlistData} = useContext(WishlistContext);
+  async function addProductToWishlist(productId){
+    let res = await addToWishlist(productId);
+    setWishListData(res.data.data);
 
+  }
+  async function deleteProductToWishlist(productId){
+    let res = await removeWishlistItem(productId);
+    setWishListData(res.data.data);
+  }
+  async function getWishlistdata(){
+    let res = await getLoggedWishlistData();
+    let ids = res.data.map((item)=>item.id)
+    setWishListData(ids);
+
+  }
+  useEffect(() => {
+    getWishlistdata();
+  }, [])
   
   return (
     <div className="row my-14 items-center overflow-hidden">
@@ -77,7 +97,14 @@ function ProductDetals() {
               {details.ratingsAverage}
             </div>
           </div>
-          <button className="btn w-full" onClick={()=>{addProduct(details.id)}}>Add To Cart</button>
+          <div className="flex flex-wrap">
+          <div className="w-4/5"> 
+
+          <button className="btn w-full" onClick={()=>{addProduct(details.id); deleteProductToWishlist(details.id);}}>Add To Cart</button>
+          </div>
+          <button className={`hover:text-red-600 flex justify-center items-center w-1/5 ${isInWishlist(details.id) ? 'text-red-700':'text-black'}`} onClick={()=>{isInWishlist(details.id) ? deleteProductToWishlist(details.id) :addProductToWishlist(details.id)}}><FaHeart size={30} /></button>
+          </div>
+          
         </div>
       </div>
     </div>

@@ -61,12 +61,17 @@
     {
         background-color: var(--light-color) !important;
     }
+    
     .active{
         color: #0aad0a;
         transition: all 500ms;
         font-weight: bold;
     }
-    
+    .active.wishlist{
+        color: red;
+        transition: all 500ms;
+        font-weight: bold;
+    }
     .row{
         @apply flex flex-wrap
     }

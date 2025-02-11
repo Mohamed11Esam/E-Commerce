@@ -14,6 +14,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { useContext } from "react";
 import { tokenContext } from "../../Context/TokenContext";
 import { CartContext } from './../../Context/CartContext';
+import { FaRegHeart } from "react-icons/fa6";
 function NavBar() {
   const { token, setToken } = useContext(tokenContext);
   const { numOfCartItem } = useContext(CartContext);
@@ -78,6 +79,16 @@ function NavBar() {
                 </ul>
               )}
               <ul className="font-medium  flex flex-col md-p-4 md:p-0 md:items-center  md:justify-end w-1/2  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0  ">
+              {token && (<>
+              <li>
+                    <NavLink
+                      to={"wishlist"}
+                      className="wishlist block py-2 px-3  text-neutral-700  md:p-0 text-sm hover:text-red-600"
+                      aria-current="page"
+                    >
+                     <FaRegHeart     size={24} />
+                    </NavLink>
+                  </li>
               <li>
                     <NavLink
                       to={"cart"}
@@ -88,6 +99,8 @@ function NavBar() {
                      <span className="absolute w-4 h-4 rounded-full text-black flex justify-center items-center bg-main font-semibold -right-2 -top-2">{numOfCartItem}</span>
                     </NavLink>
                   </li>
+                  </>
+              )}
                 <li>
                   <button
                     id="dropdownNavbarLink"

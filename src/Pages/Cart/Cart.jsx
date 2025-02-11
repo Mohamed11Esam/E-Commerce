@@ -45,6 +45,7 @@ function Cart() {
 
   return (
     <div>
+      
       <Helmet>
         <title>Cart</title>
       </Helmet>
