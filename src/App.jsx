@@ -23,6 +23,9 @@ import CheckOut from './Pages/CheckOut/CheckOut';
 import AllOrders from './Pages/AllOrders/AllOrders';
 import Wishlist from './Pages/Wishlist/Wishlist';
 import WishlistProvider from "./Context/WishlistContext";
+import ForgetPassword from './Pages/ForgetPassword/ForgetPassword';
+import VerifyCode from './Pages/VerifyCode/VerifyCode';
+import UpdatePassword from './Pages/UpdatePassword/UpdatePassword';
 function App() {
   const routs = createBrowserRouter([
     {
@@ -80,7 +83,28 @@ function App() {
           ),
         },
         {
-          path: "brands",
+          path: "forgetPassword",
+          element: (
+
+              <ForgetPassword />
+          ),
+        },
+        {
+          path: "verifycode",
+          element: (
+
+              <VerifyCode />
+          ),
+        },
+        {
+          path: "updatepassword",
+          element: (
+
+              <UpdatePassword />
+          ),
+        },
+        {
+          path: "brands/:id",
           element: (
             <ProtectedRoutes>
               <Brands />
@@ -96,7 +120,7 @@ function App() {
           ),
         },
         {
-          path: "categories",
+          path: "category/:id",
           element: (
             <ProtectedRoutes>
               <Categories />

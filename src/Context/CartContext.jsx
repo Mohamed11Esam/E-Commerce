@@ -1,9 +1,11 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState ,useContext} from "react";
+import { tokenContext } from './TokenContext';
 
 export const CartContext = createContext();
 
 export default function CartContextProvider({ children }) {
+  const {token} = useContext(tokenContext);
   const [numOfCartItem, setNumOfCartItem] = useState(0);
   const [cartId, setCartId] = useState(null);
 

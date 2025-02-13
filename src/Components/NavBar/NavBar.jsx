@@ -60,24 +60,6 @@ function NavBar() {
                   </li>
                   <li>
                     <NavLink
-                      to={"categories"}
-                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm hover:text-main"
-                      aria-current="page"
-                    >
-                      Categories
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to={"brands"}
-                      className="block py-2 px-3 text-neutral-700  md:p-0 text-sm hover:text-main"
-                      aria-current="page"
-                    >
-                      Brands
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
                       to={"allorders"}
                       className="block py-2 px-3 text-neutral-700  md:p-0 text-sm hover:text-main"
                       aria-current="page"

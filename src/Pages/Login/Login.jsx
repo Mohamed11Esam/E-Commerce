@@ -123,7 +123,7 @@ function Login() {
                   </button>
                 )}
               </div>
-
+<div className="flex flex-wrap justify-between">
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Creat New Account ?{" "}
                 <Link
@@ -133,6 +133,15 @@ function Login() {
                   Register
                 </Link>
               </p>
+              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                <Link
+                  to={"/forgetPassword"}
+                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                >
+                  Forget Password ?
+                </Link>
+              </p>
+              </div>
             </form>
           </div>
         </div>
