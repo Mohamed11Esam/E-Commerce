@@ -72,6 +72,11 @@
         transition: all 500ms;
         font-weight: bold;
     }
+    .active.updateuserdata{
+        color:blue;
+        transition: all 500ms;
+        font-weight: bold;
+    }
     .row{
         @apply flex flex-wrap
     }

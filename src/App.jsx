@@ -26,6 +26,8 @@ import WishlistProvider from "./Context/WishlistContext";
 import ForgetPassword from './Pages/ForgetPassword/ForgetPassword';
 import VerifyCode from './Pages/VerifyCode/VerifyCode';
 import UpdatePassword from './Pages/UpdatePassword/UpdatePassword';
+import UpdateUserData from './Pages/UpdateUserData/UpdateUserData';
+import NotFound from './Pages/NotFound/NotFound';
 function App() {
   const routs = createBrowserRouter([
     {
@@ -71,6 +73,14 @@ function App() {
           element: (
             <ProtectedRoutes>
               <Wishlist />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "updateuserdata",
+          element: (
+            <ProtectedRoutes>
+              <UpdateUserData />
             </ProtectedRoutes>
           ),
         },
@@ -125,6 +135,13 @@ function App() {
             <ProtectedRoutes>
               <Categories />
             </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "*",
+          element: (
+
+              <NotFound />
           ),
         },
       ],
