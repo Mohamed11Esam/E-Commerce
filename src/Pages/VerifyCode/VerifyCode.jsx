@@ -9,7 +9,7 @@ function VerifyCode() {
     const [accExist, setAccExist] = useState(null);
     const [isLoadingt, setIsLoadingt] = useState(false);
     const navigate = useNavigate();
-    async function handleRefister(data) {
+    async function verifyCode(data) {
       setIsLoadingt(true);
       //call api
       let res = await axios
@@ -33,7 +33,7 @@ function VerifyCode() {
     const formik = useFormik({
       initialValues,
       validationSchema,
-      onSubmit: handleRefister,
+      onSubmit: verifyCode,
     });
     return (
         <section className="">

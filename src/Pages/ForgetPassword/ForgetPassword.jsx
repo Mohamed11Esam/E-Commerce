@@ -10,7 +10,7 @@ function ForgetPassword() {
     const [isLoadingt, setIsLoadingt] = useState(false);
     const navigate = useNavigate();
     const {setToken} = useContext(tokenContext);
-    async function handleRefister(data) {
+    async function handleForgetPassword(data) {
       setIsLoadingt(true);
       //call api
       let res = await axios
@@ -37,7 +37,7 @@ function ForgetPassword() {
     const formik = useFormik({
       initialValues,
       validationSchema,
-      onSubmit: handleRefister,
+      onSubmit: handleForgetPassword,
     });
     return (
         <section className="">
