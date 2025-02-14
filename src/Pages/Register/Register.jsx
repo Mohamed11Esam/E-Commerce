@@ -21,8 +21,7 @@ function Register() {
       .catch((error) => {
         setAccExist(error.response.data.message);
         setIsLoadingt(false);
-      });
-    console.log(accExist);
+      }); 
   }
   const initialValues = {
     name: "",
@@ -50,7 +49,6 @@ function Register() {
     onSubmit: handleRefister,
   });
 
-  console.log(formik.values);
 
   return (
     <section className="">

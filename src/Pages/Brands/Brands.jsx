@@ -8,6 +8,7 @@ import { useContext, useState } from 'react';
 import { useEffect } from 'react';
 import ProductItem from './../../Components/ProductItem/ProductItem';
 import noProducts from '../../assets/images/Empty-cart.97fb3c19229a1ba90557c158abbeecab.svg'
+import { Helmet } from "react-helmet";
 function Brands() {
   const [loading, setLoading] = useState(true);
     const { id } = useParams();
@@ -68,6 +69,9 @@ function Brands() {
       }, [])
     return (
         <>
+        <Helmet>
+                <title>brands</title>
+            </Helmet>
         {isLoading ? (
           <Loader />
         ) : (

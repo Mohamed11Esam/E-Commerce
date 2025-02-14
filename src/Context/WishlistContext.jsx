@@ -40,7 +40,7 @@ export default function WishlistProvider({ children }) {
       .catch((err) => err);
   }
   const isInWishlist = (productId)=>{
-    return wishListData.some((item)=>item == productId)
+    return wishListData?.some((item)=>item == productId)
   }
   return (
     <WishlistContext.Provider

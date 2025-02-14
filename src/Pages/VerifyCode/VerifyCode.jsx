@@ -6,10 +6,10 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { tokenContext } from "../../Context/TokenContext";
 function VerifyCode() {
-    const [accExist, setAccExist] = useState(null);
+    const [codeError, setcodeError] = useState(null);
     const [isLoadingt, setIsLoadingt] = useState(false);
     const navigate = useNavigate();
-    async function verifyCode(data) {
+    async function handleRefister(data) {
       setIsLoadingt(true);
       //call api
       let res = await axios
@@ -19,10 +19,10 @@ function VerifyCode() {
           setIsLoadingt(false);
         })
         .catch((error) => {
-          setAccExist(error.response.data.message);
+          setcodeError(error.response.data.message);
           setIsLoadingt(false);
         });
-      console.log(accExist);
+      console.log(codeError);
     }
     const initialValues = {
         resetCode: "",
@@ -33,7 +33,7 @@ function VerifyCode() {
     const formik = useFormik({
       initialValues,
       validationSchema,
-      onSubmit: verifyCode,
+      onSubmit: handleRefister,
     });
     return (
         <section className="">

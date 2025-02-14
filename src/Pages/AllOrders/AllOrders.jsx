@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
 import Loader from '../../Components/Loader/Loader';
+import noProducts from '../../assets/images/Empty-Orders.bb268bb96fb25e2531ada376677c07da.svg'
 
 function Orders() {
       const [orders, setOrders] = useState([]);
@@ -55,7 +56,7 @@ function Orders() {
 
                       </div>
                       ))
-                    : <h2>No Orders</h2>}
+                    : <img src={noProducts} className="w-1/3" alt="" />}
         </div>
       </div>
 

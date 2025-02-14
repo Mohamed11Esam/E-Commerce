@@ -51,7 +51,7 @@ function LatestProducts() {
   }
   async function getWishlistdata(){
     let res = await getLoggedWishlistData();
-    let ids = res.data.map((item)=>item.id)
+    let ids = res?.data?.map((item)=>item.id)
     setWishListData(ids);
 
   }
@@ -60,7 +60,7 @@ function LatestProducts() {
   }, [])
   
   return <div className="row my-10 justify-center">
-    {products.length > 0 ? products.map((product)=> (
+    {products?.length > 0 ? products?.map((product)=> (
         <div className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6" key={product.id}>
             <ProductItem product={product} addProduct={addProduct} isInWishlist={isInWishlist} deleteProductToWishlist={deleteProductToWishlist} addProductToWishlist={addProductToWishlist}/>
         </div>

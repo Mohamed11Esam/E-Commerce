@@ -26,7 +26,6 @@ function Login() {
         setAccExist(error.response.data.message);
         setIsLoadingt(false);
       });
-    console.log(accExist);
   }
   const initialValues = {
     email: "",
@@ -44,7 +43,6 @@ function Login() {
     onSubmit: handleRefister,
   });
 
-  console.log(formik.values);
 
   return (
     <section className="">

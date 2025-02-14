@@ -6,6 +6,7 @@ import ProductItem from "./../../Components/ProductItem/ProductItem";
 import { CartContext } from "../../Context/CartContext";
 import toast from "react-hot-toast";
 import noProducts from '../../assets/images/WishList.27b4b70c133dbb5fa3624842ce62d778.svg';
+import { Helmet } from "react-helmet";
 
 function Wishlist() {
   const {
@@ -79,13 +80,16 @@ function Wishlist() {
 
   return (
     <div className="container min-h-dvh">
+      <Helmet>
+                <title>WishList</title>
+            </Helmet>
       <h2 className="text-2xl font-semibold py-4">Wishlist:</h2>
       {loading ? (
         <Loader />
       ) : (
         <div className="row my-10 justify-center">
-          {wishList.length > 0 ? (
-            wishList.map((product) => (
+          {wishList?.length > 0 ? (
+            wishList?.map((product) => (
               <div
                 className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6"
                 key={product.id}
