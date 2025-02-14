@@ -1,12 +1,17 @@
-import { Navigate } from 'react-router-dom'
-import styles from './ProtectedRoutes.module.css'
-function ProtectedRoutes({children}) {
-    if(localStorage.getItem('token')){
-        return children;
-    }
-    else{
-       return <Navigate to={'/login'}/>
-    }
+import { Navigate } from "react-router-dom";
+
+function ProtectedRoutes({ children, isProtected = true }) {
+  const token = localStorage.getItem("token");
+
+  if (isProtected && !token) {
+    return <Navigate to="/login" />;
+  }
+
+  if (!isProtected && token) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
 }
 
-export default ProtectedRoutes
+export default ProtectedRoutes;

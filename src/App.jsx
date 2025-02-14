@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import MainLayout from "./Pages/MainLayout/MainLayout";
@@ -13,21 +12,21 @@ import TokenContextProvder from "./Context/TokenContext";
 import ProtectedRoutes from "./Components/ProtectedRoutes/ProtectedRoutes";
 import ProductDetals from "./Pages/ProductDetals/ProductDetals";
 import { RiWifiOffLine } from "react-icons/ri";
-import { FaWifi } from "react-icons/fa";
-import { Offline, Online } from "react-detect-offline";
+
+import { Offline } from "react-detect-offline";
 import CartContextProvider from "./Context/CartContext";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import CheckOut from './Pages/CheckOut/CheckOut';
-import AllOrders from './Pages/AllOrders/AllOrders';
-import Wishlist from './Pages/Wishlist/Wishlist';
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import CheckOut from "./Pages/CheckOut/CheckOut";
+import AllOrders from "./Pages/AllOrders/AllOrders";
+import Wishlist from "./Pages/Wishlist/Wishlist";
 import WishlistProvider from "./Context/WishlistContext";
-import ForgetPassword from './Pages/ForgetPassword/ForgetPassword';
-import VerifyCode from './Pages/VerifyCode/VerifyCode';
-import UpdatePassword from './Pages/UpdatePassword/UpdatePassword';
-import UpdateUserData from './Pages/UpdateUserData/UpdateUserData';
-import NotFound from './Pages/NotFound/NotFound';
+import ForgetPassword from "./Pages/ForgetPassword/ForgetPassword";
+import VerifyCode from "./Pages/VerifyCode/VerifyCode";
+import UpdatePassword from "./Pages/UpdatePassword/UpdatePassword";
+import UpdateUserData from "./Pages/UpdateUserData/UpdateUserData";
+import NotFound from "./Pages/NotFound/NotFound";
 function App() {
   const routs = createBrowserRouter([
     {
@@ -50,8 +49,22 @@ function App() {
             </ProtectedRoutes>
           ),
         },
-        { path: "login", element: <Login /> },
-        { path: "register", element: <Register /> },
+        {
+          path: "login",
+          element: (
+            <ProtectedRoutes isProtected={false}>
+              <Login />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "register",
+          element: (
+            <ProtectedRoutes isProtected={false}>
+              <Register />{" "}
+            </ProtectedRoutes>
+          ),
+        },
         {
           path: "cart",
           element: (
@@ -95,22 +108,25 @@ function App() {
         {
           path: "forgetPassword",
           element: (
-
+            <ProtectedRoutes isProtected={false}>
               <ForgetPassword />
+            </ProtectedRoutes>
           ),
         },
         {
           path: "verifycode",
           element: (
-
+            <ProtectedRoutes isProtected={false}>
               <VerifyCode />
+            </ProtectedRoutes>
           ),
         },
         {
           path: "updatepassword",
           element: (
-
+            <ProtectedRoutes isProtected={false}>
               <UpdatePassword />
+            </ProtectedRoutes>
           ),
         },
         {
@@ -139,10 +155,7 @@ function App() {
         },
         {
           path: "*",
-          element: (
-
-              <NotFound />
-          ),
+          element: <NotFound />,
         },
       ],
     },
@@ -152,19 +165,18 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TokenContextProvder>
         <WishlistProvider>
-        <CartContextProvider>
-          <div className="row gap-2 items-center offline fixed bottom-2 right-4 bg-green-100 z-50">
-            <Offline>
-              🔴 You are Offline <RiWifiOffLine className="inline " />
-            </Offline>
-          </div>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <Toaster />
-          <RouterProvider router={routs}></RouterProvider>
-        </CartContextProvider>
+          <CartContextProvider>
+            <div className="row gap-2 items-center offline fixed bottom-2 right-4 bg-green-100 z-50">
+              <Offline>
+                🔴 You are Offline <RiWifiOffLine className="inline " />
+              </Offline>
+            </div>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <Toaster />
+            <RouterProvider router={routs}></RouterProvider>
+          </CartContextProvider>
         </WishlistProvider>
       </TokenContextProvder>
-      
     </QueryClientProvider>
   );
 }
