@@ -93,11 +93,14 @@ function NavBar() {
               <li>
                     <NavLink
                       to={"cart"}
-                      className="block py-2 px-3 relative text-neutral-700  md:p-0 text-sm hover:text-main"
+                      className="block py-2 px-3  text-neutral-700  md:p-0 text-sm hover:text-main"
                       aria-current="page"
                     >
-                     <IoCartOutline    size={24} />
+                      <div className="relative w-fit">
+
+                     <IoCartOutline className=""   size={24} />
                      <span className="absolute w-4 h-4 rounded-full text-black flex justify-center items-center bg-main font-semibold -right-2 -top-2">{numOfCartItem}</span>
+                      </div>
                     </NavLink>
                   </li>
                   </>

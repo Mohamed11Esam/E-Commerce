@@ -21,7 +21,7 @@ function Orders() {
       useEffect(() => {
         getData(jwtDecode(localStorage.getItem('token')).id);
       }, [])
-      console.log(orders)
+
     return (<>{loading ? <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
   <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
     <div className="mx-auto max-w-5xl">
