@@ -5,6 +5,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { tokenContext } from "../../Context/TokenContext";
 import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 function UpdateUserData() {
     const [isLoadingt, setIsLoadingt] = useState(false);
   const navigate = useNavigate();
@@ -52,6 +53,9 @@ function UpdateUserData() {
 
     return (
         <section className="">
+                <Helmet>
+        <title>Update User Data</title>
+      </Helmet>
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-4xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
