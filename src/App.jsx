@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import MainLayout from "./Pages/MainLayout/MainLayout";
 import Home from "./Pages/Home/Home";
@@ -29,7 +29,7 @@ import UpdatePassword from './Pages/UpdatePassword/UpdatePassword';
 import UpdateUserData from './Pages/UpdateUserData/UpdateUserData';
 import NotFound from './Pages/NotFound/NotFound';
 function App() {
-  const routs = createBrowserRouter([
+  const routs = createHashRouter([
     {
       path: "",
       element: <MainLayout />,
