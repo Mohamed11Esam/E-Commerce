@@ -59,7 +59,9 @@ function LatestProducts() {
     getWishlistdata();
   }, [])
   
-  return <div className="row my-10 justify-center">
+  return<>
+    <h2 className="text-2xl ">Latest Products </h2>
+   <div className="row my-10 justify-center">
     {products?.length > 0 ? products?.map((product)=> (
         <div className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6" key={product.id}>
             <ProductItem product={product} addProduct={addProduct} isInWishlist={isInWishlist} deleteProductToWishlist={deleteProductToWishlist} addProductToWishlist={addProductToWishlist}/>
@@ -67,6 +69,7 @@ function LatestProducts() {
     )):<Loader/>
     }
     </div>;
+    </>
 }
 
 export default LatestProducts;

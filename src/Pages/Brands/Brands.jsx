@@ -87,7 +87,7 @@ function Brands() {
         <div className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6" key={product.id}>
             <ProductItem product={product} addProduct={addProduct} isInWishlist={isInWishlist} deleteProductToWishlist={deleteProductToWishlist} addProductToWishlist={addProductToWishlist}/>
         </div>
-    )):<img src={noProducts} className="" alt="" />
+    )):<img src={noProducts} className="w-1/3" alt="" />
     }
       </div>}
     </section>
